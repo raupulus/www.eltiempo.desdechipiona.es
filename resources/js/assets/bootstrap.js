@@ -7,10 +7,13 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+  window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
+  // Popper daba problemas con dropdown desplegables en el panel de
+  // administración, por eso opté por usar directamente bootstrap con bundle.
+  //window.Popper = window.popper = require('popper.js').default;
+
+  include('~bootstrap/dist/js/bootstrap.bundle.js');
 } catch (e) {}
 
 /**
