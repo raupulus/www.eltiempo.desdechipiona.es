@@ -15,8 +15,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/services', function () {
+    return view('services');
+})->name('services');
+
+/******************************************
+ *           Rutas de errores
+ ******************************************/
 Route::group(['prefix' => 'error'], function() {
     Route::get('/404', function() {
         return view('errors.404');
@@ -26,7 +41,6 @@ Route::group(['prefix' => 'error'], function() {
         return view('errors.500');
     })->name('error-500');
 });
-
 
 /******************************************
  *            PANEL DE GESTIÓN

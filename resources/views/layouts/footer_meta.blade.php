@@ -15,6 +15,12 @@
 {{-- Fontawesome --}}
 <script src="{{ mix('assets/js/fontawesome.js') }}"></script>
 
+{{-- Mis funciones generales --}}
+<script src="{{ mix('js/functions.js') }}"></script>
+
+{{-- Widgets Propios --}}
+<script src="{{ mix('js/widgets.js') }}"></script>
+
 {{-- Scripts que serán reemplazados por algunas páginas --}}
 @section('footer-js-custom')
     {{-- DataTables --}}
@@ -23,6 +29,5 @@
     {{-- Chart.js --}}
     <script src="{{ mix('assets/js/chart.js') }}"></script>
 
-    <script src="{{ mix('js/functions.js') }}"></script>
     <script src="{{ mix('js/scripts.js') }}"></script>
 @show

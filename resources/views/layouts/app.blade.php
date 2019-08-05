@@ -16,24 +16,19 @@ E-mail: dev@fryntiz.es
         @yield('head_javascript')
     </head>
 
-    <body id="page-top" class="header-sticky">
+    <body>
          @include('layouts.navbar')
 
-         <div id="wrapper">
-             <div id="content-wrapper">
-                 <div class="container-fluid">
-                     <div id="box-content">
-                         @yield('content')
-                     </div>
-                 </div>
+         @yield('header')
 
-                 @include('layouts.sidebar')
-             </div>
+         <div id="app" class="container">
+             @yield('content')
          </div>
 
          @include('layouts.footer')
          @include('layouts.footer_meta')
          @yield('css')
          @yield('javascript')
+         @yield('js')
     </body>
 </html>

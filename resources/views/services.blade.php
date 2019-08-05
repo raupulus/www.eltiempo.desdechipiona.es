@@ -18,9 +18,14 @@
 
 @section('content')
     @include('layouts.breadcrumbs')
+
     <div class="row">
-        <div class="col-12 mb-5">
+        <div class="col-md-8 mb-5">
             Página de pruebas en blanco
+        </div>
+
+        <div class="col-md-4 mb-5">
+            @include('layouts.sidebar')
         </div>
     </div>
 @endsection
