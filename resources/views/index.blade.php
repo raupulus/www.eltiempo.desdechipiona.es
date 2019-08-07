@@ -16,6 +16,9 @@
 @section('twitter-site', '')
 @section('twitter-creator', '')
 
+{{-- Marca el elemento del menú que se encuentra activo --}}
+@section('active-index', 'active')
+
 @section('header')
     <header class="bg-primary py-5 mb-5">
         <div class="container h-100">

@@ -29,6 +29,14 @@ Route::get('/services', function () {
     return view('services');
 })->name('services');
 
+Route::get('/privacity', function () {
+    return view('privacity');
+})->name('privacity');
+
+Route::get('/cookies', function () {
+    return view('cookies');
+})->name('cookies');
+
 /******************************************
  *           Rutas de errores
  ******************************************/

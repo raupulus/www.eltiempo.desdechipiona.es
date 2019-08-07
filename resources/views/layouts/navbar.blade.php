@@ -15,14 +15,14 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item @yield('active-index')">
                     <a class="nav-link" href="{{route('index')}}">
                         Inicio
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item @yield('active-service')">
                     <a class="nav-link" href="{{route('services')}}">
                         Servicios
                     </a>
@@ -71,11 +71,13 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('about')}}">About</a>
+                <li class="nav-item @yield('active-about')">
+                    <a class="nav-link" href="{{route('about')}}">
+                        About
+                    </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item @yield('active-contact')">
                     <a class="nav-link" href="{{route('contact')}}">
                         Contacto
                     </a>

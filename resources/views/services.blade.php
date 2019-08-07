@@ -16,6 +16,9 @@
 @section('twitter-site', '')
 @section('twitter-creator', '')
 
+{{-- Marca el elemento del menú que se encuentra activo --}}
+@section('active-service', 'active')
+
 @section('content')
     @include('layouts.breadcrumbs')
 

@@ -17,7 +17,7 @@
 @section('twitter-creator', '')
 
 {{-- Marca el elemento del menú que se encuentra activo --}}
-@section('active-about', 'active')
+@section('active-index', 'active')
 
 @section('header')
     <header class="bg-primary py-5 mb-5">
@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-md-8 blog-main">
             <h3 class="pb-3 mb-4 font-italic border-bottom">
-                Sobre Nosotros y el Proyecto
+                Política de Privacidad
             </h3>
 
             <div class="blog-post">
