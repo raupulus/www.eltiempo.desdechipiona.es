@@ -2,20 +2,24 @@
 
 namespace App\Mail;
 
-use function array_merge;
 use function config;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class GenericMail extends Mailable
+/**
+ * Class ContactMail
+ *
+ * @package App\Mail
+ */
+class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data, $view, $to, $from, $subject;
+    public $data, $from, $subject;
 
     /**
-     * Create a new message instance. Generic use.
+     * ContactMail constructor.
      *
      * Para adjuntar un archivo recibe en data un elemento con key attached
      * que será un array conteniendo:
@@ -23,18 +27,10 @@ class GenericMail extends Mailable
      * name: nombre del archivo al ser adjuntado
      * mime: tipo mime del archivo
      *
-     * @param      $config
-     * @param null $data
+     * @param $data
      */
-    public function __construct($config, $data = null)
+    public function __construct($data)
     {
-        $config = array_merge([
-            'to' => config('mail.from.address'),
-            'from' => config('mail.from.address'),
-            'subject' => 'Mensaje desde ' . config('app.name'),
-            'view' => 'mail.mail_generic',  // Vista que procesará el email
-        ], $config);
-
         if ($data && isset($data['attached'])) {
             $this->attachData(
                 $data['attached']['data'],
@@ -44,23 +40,21 @@ class GenericMail extends Mailable
                 ]
             );
         }
-        
+
         $this->data = $data;
-        $this->subject = $config['subject'];
-        $this->view = $config['view'];
-        $this->to = $config['to'];
-        $this->from = $config['from'];
+        $this->subject = $data['subject'];
+        $this->from = $data['email'];
     }
 
     /**
-     * Email Genérico para complementar o uso rápido/general al enviar email.
+     * Email para el formulario de contacto.
      *
-     * @return \App\Mail\GenericMail
+     * @return \App\Mail\ContactMail
      */
     public function build()
     {
-        return $this->view($this->view, $this->data)
-            ->to($this->to, $this->from)
+        return $this->view('mail.mail_contact', $this->data)
+            ->to(config('mail.from.address'), $this->from)
             ->subject($this->subject)
             ->from(config('mail.from.address'), config('mail.from.name'));
     }

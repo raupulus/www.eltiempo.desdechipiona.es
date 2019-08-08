@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+## Rutas para contactar.
+Route::get('/contact', 'ContactController@view')->name('contact');
+Route::post('/contact/send', 'ContactController@send')->name('contact-send');
 
 Route::get('/about', function () {
     return view('about');
