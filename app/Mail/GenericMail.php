@@ -17,6 +17,12 @@ class GenericMail extends Mailable
     /**
      * Create a new message instance. Generic use.
      *
+     * Para adjuntar un archivo recibe en data un elemento con key attached
+     * que será un array conteniendo:
+     * data: contenido del archivo
+     * name: nombre del archivo al ser adjuntado
+     * mime: tipo mime del archivo
+     *
      * @param      $config
      * @param null $data
      */
@@ -29,8 +35,13 @@ class GenericMail extends Mailable
             'view' => '',  // Vista que procesará el email
         ], $config);
 
-        if (isset($data['attached'])) {
-            $this->attach($data['attached']);
+        if ($data && isset($data['attached'])) {
+            $this->attachData(
+                $data['attached']['data'],
+                $data['attached']['name'],
+                [
+                    'mime' => $data['attached']['mime'],
+                ]);
         }
         
         $this->data = $config['data'];
