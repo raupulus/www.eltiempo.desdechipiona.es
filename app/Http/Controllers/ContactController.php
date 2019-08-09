@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use App\Http\Requests\ContactoRequest;
+use function config;
+use Exception;
 use Illuminate\Support\Facades\Mail;
 use function view;
 
@@ -24,7 +26,7 @@ class ContactController extends Controller
      */
     public function view()
     {
-        return view('contact');
+        return view('contact.view');
     }
 
     /**
@@ -42,12 +44,20 @@ class ContactController extends Controller
             'phone' => $request->get('phone'),
             'message' => $request->get('message'),
             'privacity' => $request->get('privacity'),
+            'contactme' => $request->get('contactme'),
             'server_ip' => $request->ip(),  // Ip del servidor
             'client_ip' => $request->getClientIp(),  // Ip del cliente
+            'subject' => 'Formulario de contacto en ' . config('app.name'),
         ];
 
         $contact = new ContactMail($data);
-        Mail::send($contact);
+
+        return $contact->render();
+        try {
+            Mail::send($contact);
+        } catch (Exception $e) {
+            dd($e);
+        }
 
         $this->dbStore($data);
         $this->apiStore($data);

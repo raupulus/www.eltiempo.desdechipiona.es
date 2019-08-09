@@ -30,7 +30,10 @@
                      title="Rocket icon contact" />
             </div>
 
-            <form method="post">
+            <form method="post" action="{{route('contact-send')}}">
+
+                @csrf
+
                 <h3>Envíanos un mensaje</h3>
 
                 <div class="row">
@@ -95,11 +98,11 @@
                                    class="form-check-input" />
 
                             <label class="form-check-label" for="privacity">
-                                Acepto condiciones de
+                                He leído y acepto las
                                 <a href="{{route('privacity')}}" 
                                    title="Declaración de Privacidad">
                                     <strong>
-                                        privacidad
+                                        políticas de privacidad
                                     </strong>
                                 </a>
                             </label>

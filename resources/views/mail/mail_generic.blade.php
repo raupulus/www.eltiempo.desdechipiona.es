@@ -1,4 +1,4 @@
-@extends('Mail.layouts._mail_base')
+@extends('mail.layouts._mail_base')
 
 @section('content')
     Este es un mensaje automático por {{config('app.name')}} desde la

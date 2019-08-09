@@ -16,7 +16,7 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data, $from, $subject;
+    public $data, $subject;
 
     /**
      * ContactMail constructor.
@@ -31,6 +31,7 @@ class ContactMail extends Mailable
      */
     public function __construct($data)
     {
+        /*
         if ($data && isset($data['attached'])) {
             $this->attachData(
                 $data['attached']['data'],
@@ -40,10 +41,12 @@ class ContactMail extends Mailable
                 ]
             );
         }
+        */
 
         $this->data = $data;
         $this->subject = $data['subject'];
-        $this->from = $data['email'];
+        //$this->from = $data['email'];
+        //$this->to = [$this->to, $this->from];
     }
 
     /**
@@ -53,8 +56,8 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.mail_contact', $this->data)
-            ->to(config('mail.from.address'), $this->from)
+        return $this->view('mail.mail_contact', ['data' => $this->data])
+            ->to($this->data['email'], config('mail.from.address'))
             ->subject($this->subject)
             ->from(config('mail.from.address'), config('mail.from.name'));
     }

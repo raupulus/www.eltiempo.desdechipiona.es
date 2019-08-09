@@ -1,17 +1,89 @@
-@extends('Mail.layouts._mail_base')
+@extends('mail.layouts._mail_base')
 
 @section('content')
-    Este es un mensaje automático por {{config('app.name')}} desde la
-    dirección <a href="{{config('app.url')}}"
-                 alt="{{config('app.name')}}">{{config('app.url')}}</a>
+    <div id="box-primary">
+        Este es un mensaje automático de la aplicación web:
+        <span style="color: #f99900; text-shadow: 1px 1px 1px #000;
+        text-shadow: -1px 1px 1px #000; text-shadow: 1px -1px 1px #000;
+        text-shadow: -1px -1px 1px #000;">
+            <strong>
+                {{config('app.name')}}
+            </strong>
+        </span>
+        desde la dirección:
+        <strong>
+            <a href="{{config('app.url')}}" title="{{config('app.name')}}">
+                {{config('app.url')}}
+            </a>
+        </strong>
 
-    <div>
+        <br />
+
+        Has recibido este mensaje desde el formulario de contacto.
+    </div>
+
+    <hr />
+
+    <div id="box-content">
+        <h2 style="margin: auto">Mensaje</h2>
         <p>
-            Email: <a href="mailto:{{ $mail->email }}">{{ $mail->email }}</a>
+            {{ $data['message'] }}
         </p>
-        <p>
-            Telefono: {{ $mail->phone }}
-        </p>
-        <p>{{ $mail->body }}</p>
+    </div>
+
+    <hr />
+
+    <div id="box-info">
+        <div>
+            <h2>Información adicional sobre el contacto</h2>
+        </div>
+
+        <div>
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Dato</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{ $data['name'] }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            <a href="mailto:{{ $data['email'] }}">
+                                {{ $data['email'] }}
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Teléfono</td>
+                        <td>{{ $data['phone'] }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>¿Quiere que se contacte?</td>
+                        <td>{{ $data['contactme'] == 'on' ? 'Sí' : 'No' }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ip servidor</td>
+                        <td>{{ $data['server_ip'] }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ip cliente</td>
+                        <td>{{ $data['client_ip'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 @endsection
